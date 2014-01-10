@@ -1,0 +1,173 @@
+\documentclass[twocolumn,english]{IEEEtran}
+\usepackage[T1]{fontenc}
+\usepackage{babel}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage[unicode=true,
+ bookmarks=true,bookmarksnumbered=true,bookmarksopen=true,bookmarksopenlevel=1,
+ breaklinks=false,pdfborder={0 0 0},backref=false,colorlinks=false]
+ {hyperref}
+\hypersetup{pdftitle={Unified Transport Stack for Cloud Computing},
+ pdfauthor={Mathias Habl``utzel},
+ pdfpagelayout=OneColumn, pdfnewwindow=true, pdfstartview=XYZ, plainpages=false}
+
+\makeatletter
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LyX specific LaTeX commands.
+\DeclareRobustCommand*{\lyxarrow}{%
+\@ifstar
+{\leavevmode\,$\triangleleft$\,\allowbreak}
+{\leavevmode\,$\triangleright$\,\allowbreak}}
+%% Because html converters don't know tabularnewline
+\providecommand{\tabularnewline}{\\}
+%% A simple dot to overcome graphicx limitations
+\newcommand{\lyxdot}{.}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Textclass specific LaTeX commands.
+ % protect \markboth against an old bug reintroduced in babel >= 3.8g
+ \let\oldforeign@language\foreign@language
+ \DeclareRobustCommand{\foreign@language}[1]{%
+   \lowercase{\oldforeign@language{#1}}}
+\theoremstyle{plain}
+\newtheorem{thm}{\protect\theoremname}
+\theoremstyle{plain}
+\newtheorem{lem}[thm]{\protect\lemmaname}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+% for subfigures/subtables
+\ifCLASSOPTIONcompsoc
+\usepackage[caption=false,font=normalsize,labelfont=sf,textfont=sf]{subfig}
+\else
+\usepackage[caption=false,font=footnotesize]{subfig}
+\fi
+\makeatother
+
+\providecommand{\lemmaname}{Lemma}
+\providecommand{\theoremname}{Theorem}
+
+\begin{document}
+
+
+
+
+
+\title{Unified Transport Stack for Cloud Computing}
+
+
+\author{Mathias Habl''utzel, Second~Name,
+\thanks{Z, ... Institute of ..., City,
+Country, e-mail: \protect\href{http://xxx@xxx.xxx}{xxx@xxx.xxx}.%
+}%
+\thanks{Second~Name is with the Department of ..., ... Institute of ...,
+City, Country, e-mail: \protect\href{http://xxx@xxx.xxx}{xxx@xxx.xxx}.%
+}%
+\thanks{Third~Name is with the Department of ..., ... Institute of ..., City,
+Country, e-mail: \protect\href{http://xxx@xxx.xxx}{xxx@xxx.xxx}.%
+}}
+
+
+\IEEEspecialpapernotice{Invited Paper}
+
+
+\IEEEaftertitletext{after title text like dedication}
+
+
+\markboth{Journal of XXX}{Your Name \MakeLowercase{\emph{et al.}}: Your Title}
+
+
+\IEEEpubid{0000--0000/00\$00.00~\copyright~2007 IEEE}
+\maketitle
+\begin{abstract}
+This is the abstract text.\end{abstract}
+\begin{IEEEkeywords}
+simplicity, beauty, elegance
+\end{IEEEkeywords}
+
+\section{Introduction}
+
+
+
+\IEEEPARstart{H}{ere} is the text text text text text text text
+text text text text text text text text text.
+
+
+\section{Previous Work}
+
+text text text text text text text text text text text text text text
+text
+
+
+\subsection{subsection}
+
+
+\subsection{another subsection}
+
+
+\section{Methodology}
+\begin{thm}[Theorem name]
+For a named theorem or theorem-like environment you need to insert
+the name through \textsf{Insert\lyxarrow{}Short Title}, as done here.\end{thm}
+\begin{lem}
+If you don't want a theorem or lemma name don't add one.\end{lem}
+\begin{IEEEproof}
+And here's the proof!
+\end{IEEEproof}
+
+\section{Results}
+
+\begin{figure}[htbp]
+\begin{centering}
+\textsf{A single column figure goes here}
+\par\end{centering}
+
+\caption{Captions go \emph{under} the figure}
+\end{figure}
+\begin{table}[htbp]
+\caption{Table captions go \emph{above} the table}
+
+
+\centering{}%
+\begin{tabular}{|c|c|}
+\hline 
+delete & this\tabularnewline
+\hline 
+\hline 
+example & table\tabularnewline
+\hline 
+\end{tabular}
+\end{table}
+
+
+
+\section{Conclusions}
+
+bla bla
+
+
+\appendices{}
+
+
+\section{First appendix}
+
+Citation: \cite{IEEEexample:beebe_archive}
+
+
+\section{Second appendix}
+
+
+\section*{Acknowlegment}
+
+bla bla
+
+\bibliographystyle{IEEEtran}
+\bibliography{IEEEabrv,IEEEexample}
+
+\begin{IEEEbiography}[{\includegraphics[clip,width=1in,height=1.25in,keepaspectratio,bb = 0 0 200 100, draft, type=eps]{../examples/CV-image.png}}]
+{Your Name} All about you and the what your interests are.
+\end{IEEEbiography}
+
+\begin{IEEEbiographynophoto}
+{Coauthor}Same again for the co-author, but without photo\end{IEEEbiographynophoto}
+
+\end{document}
