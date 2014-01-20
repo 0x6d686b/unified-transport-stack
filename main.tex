@@ -9,7 +9,7 @@
  breaklinks=false,pdfborder={0 0 0},backref=false,colorlinks=false]
  {hyperref}
 \hypersetup{pdftitle={Unified Transport Stack for Cloud Computing},
- pdfauthor={Mathias Habl``utzel},
+ pdfauthor={Mathias Hablützel},
  pdfpagelayout=OneColumn, pdfnewwindow=true, pdfstartview=XYZ, plainpages=false}
 
 \makeatletter
@@ -49,15 +49,9 @@
 
 \begin{document}
 
-
-
-
-
 \title{Unified Transport Stack for Cloud Computing}
 
-
-\author{Mathias Hablützel,
-    \thanks{Hablützel is with Zürcher Hochschule für Angewandte Wissenschaften, Institut für
+\author{Mathias Hablützel \thanks{Hablützel is with Zürcher Hochschule für Angewandte Wissenschaften, Institut für
     angewandte Informationstechnologie, Winterthur, Schweiz, EMail:
     \protect\href{mailto:mathias.habluetzel@zhaw.ch}{habl@zhaw.ch}.
     }
@@ -79,16 +73,70 @@
 
 \end{abstract}
 \begin{IEEEkeywords}
-simplicity, beauty, elegance
+network, transport, unified transport, communication
 \end{IEEEkeywords}
+
+%%%%%%%%% LAYOUT %%%%%%%%%%
+% 1. Motivation / Problem Statement
+% 2. State of the Art / related Work
+% 3. Contribution / What's new
+% 4. Evaluation and Results
+% 5. Conclusion and Outlook
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Introduction}
 
+\IEEEPARstart{W}{orking} with network transport protocols and built-in
+libraries either provided by the operating system itself or by third party
+libraries, a developer is usually confronted with a series of cryptic options,
+settings, flags and syscalls. This renders the task of writing understandable
+code not only difficult but also a matter of experience, but also slows down
+the job of researcher when they want to develop new protocols. Plus, the
+effort needed to just send a first datagram is significant and leads to
+bloated source code with several hundred lines of code just for the
+initialization matters.
 
+Furthermore most used implementations are heavily operating system dependant
+therefore creating an overhead in de facto re-writing or re-implementing large
+portions of the network code for other protocols and/or other major platforms.
+If you simply consider the POSIX network style as used in *nix systems like
+Linux, *BSD, OSX and similar derivatives you are confronted with different
+level of POSIX ranging from 4.xBSD to POSIX.1-2008 with operating system
+flavoured variants or even compiler and standard library flavoured extension
+which literally render the code an obscure conglomerate.
 
-\IEEEPARstart{H}{ere} is the text text text text text text text
-text text text text text text text text text.
+When a developer writes a distributed application he will choose a stack and
+write his code against this API. Altering the chosen stack on a later date
+implies to also rewrite portions of the code which handles the multiplexing,
+memory and communication paradigms. Also if the developer chooses to use
+several stacks which meet the requirements this inevitably brings in a lot of
+redundant code and a potential field of mistakes due to duplication.
 
+As a last point to be stressed, adding a new family of protocols by using a
+third party library usually introduces a new paradigm of how things are
+handled. This may range from threading to passing-by-reference or by-value or
+even different ways of how the memory content is shoved around, either by a
+pair of pointer and length value or by an object like a vector, or even
+non-uniform function/method naming. This all increases the time a developer
+needs to learn a new library and therefore is an opportunity not only to
+increase productivity but also by allowing to easily add new protocols by
+writing a wrapper according to the south bound API provided and required by
+this later proposed unified network stack.
+
+In a later point it is possible to even extend the stack with intelligent
+algorithms which choose the appropriate (or read "best, most adapted")
+protocol complying to the developers before-stated requirements according to
+the network or path health, status, situation and circumstances.
+
+So the aim of developing a unified network stack is not to design a solution
+which does everything possible innately (it speaks the most prevalent
+protocols), but is able to do so by providing an uniform skeleton for
+extensions. In a later step this framework may be directly integrated into
+core network functionalities of operating systems or as an extension, and the
+developer may then just provide his extension (read a new protocol) to the
+core and therefore be confident that when sticking to certain dogmas the
+protocol should run on widely spread systems, even if the system is not open
+sourced.
 
 \section{Previous Work}
 
