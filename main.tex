@@ -5,6 +5,7 @@
 \usepackage{amsthm}
 \usepackage{graphicx}
 \usepackage{epstopdf}
+\usepackage{color}
 \usepackage[unicode=true,
  bookmarks=true,bookmarksnumbered=true,bookmarksopen=true,bookmarksopenlevel=1,
  breaklinks=false,pdfborder={0 0 0},backref=false,colorlinks=false]
@@ -261,13 +262,127 @@ few network related functions.
 
 \section{Proposition}
 
-\begin{figure}[p]
+The proposed architecture (figure \ref{fig:arch-overview}) consists of three
+main components: Helper functionalities for threading, timers, SDN controller
+and other patterns; the individual building blocks providing support for
+different network protocols, crypto and parsers; and finally the network block
+which acts as intelligent service provider handling all the internal
+configuration and de facto is an opaque structure to abstract.
+
+\begin{figure}[h]
 \includegraphics[width=\columnwidth]{Architecture_overview.eps}
 \caption{Architecture overview -- this diagram shows that the parser, crypto,
 stream and message blocks are separate building blocks which are
 interchangeable or omitable.}
 \label{fig:arch-overview}
 \end{figure}
+
+The architecture provides not only a northbound API to the developer but also
+a southbound internal API for adding new blocks for extending the supported
+protocols. Common protocols like UDP, TCP or ICMP must be built-in since the
+vast majority of application generated traffic is handle by these (around 79\%
+TCP and 19\% UDP traffic was measured on September 17 - 18 2011 at an IX in
+Chicago run by Equinix\cite{caida:application-protocol-percentage}). Also it
+would be very helpful to provide several other protocols for a steganographic
+transport of data\cite{ijcsi:dns-steganography} to evade deep packet
+inspection and censorship.
+
+An easy setup, configuration and simple usage is of outmost importance to
+prevent many opportunity for mistakes and errors. Also a very clear
+hierarchical composition of the different parts helps to understand things
+work.
+
+\subsection{Specific requirements}
+
+First of all since this transport stack is aimed to be integrated into
+different operating systems the choice a programming language is naturally
+narrowed down to the classic machine-oriented languages and here I choosed C99
+and C++11. This allows to use C++ stream operators and this constitutes of an
+simple way for chaining stacks or parser for I/O, along with providing access
+to the several layer of communication.
+
+Since the rise of multi-core architectures in
+2004\cite{amd:first-multicore-x86} the need for concurrency pattern is
+undoubtly widely necessary. In this terms providing support for concurrency
+patterns like mutex, locking and semaphores surely is a big help to an
+engineer. Plus adding templates for patterns like reactors, proxy or singleton
+will provide a big help for repetitively used code.
+
+In times where networks are not necessarily physically wired paths SDN
+(Software Defined Networking) is an important topic for service providers as
+Cloud Computing PaaS is. The idea behind this SDN controller is to be able to
+set certain requirements about the route and the developer has not to care
+about network configuration and setup.
+
+Newer protocols like SCTP and DCCP are usually first supported by opensource
+operating systems which have a leading market share in the server
+domain\cite{w3techs:os-web}, and lacking in closed source though market
+relevant, turn the task more difficult to spread new technologies especially
+when the user end support is lacking\cite{netmarketshare:desktop-os}. Here
+also this proposed stack is revolutionary since it would enable the developer
+to write new protocols for several operating system at once and by this way
+spread new technologies faster without intervention needed by the vendor.
+
+\subsection{Proposed extensions to existing stacks}
+
+In a world of near-pervasive computing with wearables collecting sensitive
+personal and even medical data transporting the data in a safe manner becomes
+crucial. Not only to prevent tampering of potentially critical data (imagine a
+cardiac pacemaker) but also to protect the transmitted content (imagine
+mobile-banking orders). Therefore I strongly suggest to implement many
+cryptographic stacks like IPsec, NaCl, SSL and RSA but to avoid cryptographic
+primitives like 3DES, AES, MD5 or SHA1 to prevent developers from building
+their own cryptography.
+
+One big challenge for mobile devices is dealing with the scarce ressource of
+electricity and bringing support to handle this is a welcome opportunity to
+demonstrate the possibilities of this stack. It may be imagined a application
+polling informations in the background may want to schedule this job when the
+system is anyway awake and avoid to wake up the components from their deep
+sleep, and by this reduce the battery drain when not used. Figuring out when
+the system is in which state and handling this different cases right (you may
+want a instant messenger to use push services and retrieve the data also when
+the system is mostly off, whereas a feed reeder may want to fetch the data
+only when awake or on demand) is a challenging task. A system providing many
+different use cases explores new possibilities for extending autonomy.
+
+Companies facing the challenge of BYOD (Bring Your Own Device) and smartphone
+manufacturers will face the challenge to change this situation into JOC (Join
+Our Cloud) when statistically 1.3 devices are owned per
+household\cite{gartner:predicts-2014-cognizant-computing}. The idea of JOC is
+to define a domain with given restrictions and requirements which the device
+has to adhere. Now if the developer can just state in a configuration that the
+traffic to the endpoint has to satisfy certain parameters (for instance every
+requiring a up and running VPN connection before any data is sent by the
+application) and the stack takes care of the rest the risk of wrong security
+is reduced.
+
+For societies living in a deeply dependant way of communication resilience to
+interruption is crucial. Consequently the stack should support ad-hoc mesh
+network self-configuration and a wide variety of peer-to-peer protocols like
+bittorrent. This may also provide an uninterruptible service for first
+responder teams in emergency cases where the prevailing infrastructure
+collapsed or was severly damaged.
+
+The published market forecast by Frost \& Sullivan in July
+2009\cite{frost:iptv-market} stated that by end of 2012 approximately 140 mio
+customers will consume broadcasts via IPTV. But ABI research states that the
+reached over 900 mio consumers in 2013\cite{abi:iptv-marketshare} and this
+clearly shows the impact multicast stream traffic has on the network.
+Therefore adding support for broadcasting such content is surely a interesting
+oppurtinity but support for receiving such broadcasts may turn every device in
+an IPTV broadcast consumation device. The next consistent step would be to
+integrate an intelligent core which detects roaming and quickly buffers to
+avoid a stream interruption when handing over to another cell. Also providing
+intelligent multi-homing support for changing from cell-radio connectivity to
+a more stationary wifi connectivity without interruption is a features with
+market value.
+
+In a last point I want to suggest to add functionality for forcing devices to
+switch the cell-tower allowing the providers to balance the load more equally
+or to provide better connectivity to a weaker uplink even though the
+communication module would usually choose the strongest signal over good link
+quality.
 
 \section{Methodology}
 \begin{thm}[Theorem name]
