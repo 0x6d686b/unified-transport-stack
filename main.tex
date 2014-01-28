@@ -4,6 +4,7 @@
 \usepackage{babel}
 \usepackage{amsthm}
 \usepackage{graphicx}
+\usepackage{epstopdf}
 \usepackage[unicode=true,
  bookmarks=true,bookmarksnumbered=true,bookmarksopen=true,bookmarksopenlevel=1,
  breaklinks=false,pdfborder={0 0 0},backref=false,colorlinks=false]
@@ -257,6 +258,16 @@ dating from 2004 this is basically a C++ wrapper doing the usual syscalls for
 I/O reducing the amount of lines to write when doing the standard networking
 operations and other repetitive tasks. Sadly this library provides relatively
 few network related functions.
+
+\section{Proposition}
+
+\begin{figure}[p]
+\includegraphics[width=\columnwidth]{Architecture_overview.eps}
+\caption{Architecture overview -- this diagram shows that the parser, crypto,
+stream and message blocks are separate building blocks which are
+interchangeable or omitable.}
+\label{fig:arch-overview}
+\end{figure}
 
 \section{Methodology}
 \begin{thm}[Theorem name]
