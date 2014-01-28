@@ -334,15 +334,15 @@ cryptographic stacks like IPsec, NaCl, SSL and RSA but to avoid cryptographic
 primitives like 3DES, AES, MD5 or SHA1 to prevent developers from building
 their own cryptography.
 
-One big challenge for mobile devices is dealing with the scarce ressource of
+One big challenge for mobile devices is dealing with the scarce resource of
 electricity and bringing support to handle this is a welcome opportunity to
 demonstrate the possibilities of this stack. It may be imagined an application
 polling informations in the background may want to schedule this job when the
 system is anyway awake and avoid to wake up the components from their deep
 sleep, and by this reduce the battery drain when not used. Figuring out when
 the system is in which state and handling this different cases right (you may
-want a instant messenger to use push services and retrieve the data also when
-the system is mostly off, whereas a feed reeder may want to fetch the data
+want an instant messenger to use push services and retrieve the data also when
+the system is mostly off, whereas a feed reader may want to fetch the data
 only when the device is awake or on demand) is a challenging task. A system
 providing many different use cases explores new possibilities for extending
 autonomy.
@@ -353,7 +353,7 @@ Our Cloud) when statistically 1.3 devices are owned per
 household\cite{gartner:predicts-2014-cognizant-computing}. The idea of JOC is
 to define a domain with given restrictions and requirements which the device
 has to adhere. Now if the developer can just state that the traffic to the
-endpoint has to satisfy certain parameters (for instance every requiring a up
+endpoint has to satisfy certain parameters (for instance every requiring an up
 and running VPN connection before any data is sent by the application) and the
 stack takes care of the rest the risk of wrong security is reduced.
 
@@ -362,7 +362,7 @@ interruption is crucial. Consequently the stack should support ad-hoc mesh
 network self-configuration and a wide variety of peer-to-peer protocols like
 bittorrent. This may provide an uninterruptible service for first responder
 teams in emergency cases where the prevailing infrastructure collapsed or was
-severly damaged.
+severely damaged.
 
 The published market forecast by Frost \& Sullivan in July
 2009\cite{frost:iptv-market} stated that by end of 2012 approximately 140 mio
@@ -370,9 +370,9 @@ customers will consume broadcasts via IPTV. But ABI research states that
 broadcast providers reached over 900 mio customers in
 2013\cite{abi:iptv-marketshare} and this clearly shows the impact multicast
 stream traffic has on the network.  Therefore adding functionality for
-broadcasting such content is surely a interesting oppurtinity but support for
+broadcasting such content is surely an interesting opportunity but support for
 receiving such broadcasts may turn every device in an IPTV broadcast
-consumation device. The next consistent step would be to integrate an
+consummation device. The next consistent step would be to integrate an
 intelligent core which detects roaming and quickly buffers to avoid a stream
 interruption when handing over to another cell. Also providing intelligent
 multi-homing support for changing from cell-radio connectivity to a more
