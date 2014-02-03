@@ -292,6 +292,16 @@ prevent many opportunity for mistakes and errors. Also a very clear
 hierarchical composition of the different parts helps to understand how things
 work.
 
+\begin{figure}[h]
+\includegraphics[width=\columnwidth]{Concept.eps}
+\caption{Very coarse overview about how the different elements interact with
+each other. The developer essentially creates a connection object and
+indicates the wanted configuration and a callback. Then the connection will
+setup everything as required and pass incoming messages to the callback. The
+marshalling, parsing etc. is done transparently.}
+\label{fig:concept}
+\end{figure}
+
 \subsection{Specific requirements}
 
 First of all since this transport stack is aimed to be integrated into
