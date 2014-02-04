@@ -397,13 +397,145 @@ quality.
 
 \section{Discussion}
 
-\section{Conclusion}
+Having a dedicated transport stack is of course very handy and improves a lot
+of factors when the developer does not have to include a whole library like
+Boost and by this can reduce not only the dependencies, unused libraries (or
+at least pieces of it) and compile time. Furthermore a very flexible and
+modular approach is not only en vogue but also necessary to provide a
+made-to-measure service for the developer and also allows to extend the stack
+as wished.
 
-\section{Results}
+C++ streams known from the Standard Template Library are a very easy way to
+chain several parsers working on \texttt{std::vector} or \texttt{std::string}
+but they also bring in some potential for conflicts, hard to understand code
+and misuse. As stated by the internal styleguide provided by
+Google\cite{google:cpp-styleguide} streams favor especially dereference
+mistakes and also it is subject to controversy if overloading is a good
+habit.
 
-\appendices{}
+Overloading for the sake of using this languages feature is certainly wrong
+and it should be used very defensively. I don't consider it to be harmful if
+used wisely and in the right situation, so overloading \texttt{operator<<}
+should be restrained to parsing functionalities which each extract the
+payload and return a new object of the same type as the input with the copied
+payload.
 
-\section{First appendix}
+In times where higher demands of confidentiality, privacy and
+non-repudiation or exactly the opposite confidentiality, privacy and
+\emph{repudiation} providing support for cryptographic protocols is heavily
+encourage and somewhat a necessity. But there lie two major pitfalls, first
+of all a developer is not a cryptographer and therefore should not under any
+circumstances do cryptography (or even be enabled to do so by the
+framework)\cite{pzimmermann:introtocrypto}.
+
+My second major concern is that a vulnerability or a bug may lead to a
+widespread required update if for instance this library is deployed in
+embedded devices thousandfold. In a last point I'd like to also mention that
+interoperable cryptography is essential and requires special attention and
+testing, especially edge cases.
+
+For a developer it is easier to extend and reuse something existing. Since it
+allows to use other building blocks and therefore already provide a fully
+featured environment even though the novelty may consist of a few lines of
+code.
+
+Providing an open extendable stack may also entitle developer to commit and
+provide new code which in a later moment will go upstream. This situation is
+like a giant reactor and incubator for new ideas and opportunities as other
+projects like Linux showed.
+
+But this is also a potential source of problems when this stack starts to
+reimplement pieces of code already existent in the kernel or other
+core-libraries. Plus including everything possible in a stack is a mixed
+blessing, it is able to do everything but tends to be bloated with things
+developer will rarely use. The challenge here is to find the right balance.
+
+In a further point this stack is a new way of adding developer added value in
+terms of transport protocols to for example a cloud instance running an
+application. So basically a cloud application computing power provider
+enables the developer to add his extensions to the transport stack and
+therefore adapt the communication directly to his needs.
+
+On the downside this may implicate an immense risk since some extensions may
+not only require full access to the kernel-land and total control down to the
+NIC, but also may be used to directly attack the infrastructure in not
+foreseeable ways, especially with attempts to break out from the jailing.
+
+This stack enables applications and software to become QoS aware and
+explicitly ask for a certain setting of configurations on the network.
+Therefore an application for VoIP can state that the link may not require a
+lot of bandwidth but a low latency and few packet loss.
+
+Mesh networks as known from several rural provisioning in South Africa by
+residents and also from the OLPC (One Laptop Per
+Child\cite{olpc:meshnetwork}) project are not of real interest in first world
+countries since the pre-existing infrastructure covers the daily need better
+than a fluid setup which needs to reconfigure itself often. But on the other
+hand this static infrastructure is vulnerable to interruption, failure and
+deliberate harm since it is usually very centralized.
+
+Also many emergency relief organisations have to first bring in communication
+equipment (handset, relais, antennas etc. pp.) for their need which delays the
+organisation of help substantialy. Therefore providing a self organising mesh
+based network which could make use of mobile handsets already on site can
+prove itself as very advantageous when transportation means are a severe
+problem.
+
+GSM (3GPP) supports already handover from cell tower to another tower, A.
+Sarma, S. Joshi and S. Nandi explain very well an extension for IEEE 802.11 in
+their paper \cite{ijcn:ieee80211-handover} (described in figure
+\ref{fig:handover}) even though this is aimed at IEEE 802.11 and not at 3GPP.
+Originally, handover induced by the the base station is not intended by the
+standard therefore the stack would have to actually extend the PHY layer and
+possibly break compatibility with the existing hardware and devices. In IEEE
+802.21 handover is even described for vertical handovers (for example from
+IEEE 802.11 to 802.16 respectively Wifi to WiMAX) but has so far not reached
+any relevance.
+
+\begin{figure}[h]
+\includegraphics[width=\columnwidth]{Handover-to-less-frequented-cell.eps}
+\caption{When the CPE experiences serious degradation in QoS it shall send a
+list of visible BTS [1] to the currently connected BTS. This BTS will then
+lookup what other BTS could handle the client[2] (I would like to extend this
+to according to it's load parameter and connection requirements), then
+signaling to the CPE which BTS to connect to[3] and eventually the CPE
+connects to the less busy BTS[4] if possible (read: without dropping
+connections).}
+\label{fig:handover}
+\end{figure}
+
+A further very welcome improvement for engineers and developer is to be able
+to reuse paradigms, patterns and templates and reducing by this the overhead
+of rewriting them. But writing to general constructs for supporting the
+widest range possible of developer engineered code can turn these helper
+functions into a hard to understand and complex templating and can be
+considered harmful. Therefore a careful balance or different specific types
+implementing these patterns, paradigms and templates may be required and well
+adapted for the purpose.
+
+The central configuration passed to the communication class is to be thought
+as a middleware like construct since the intelligence is in this
+class. This means that a lot of crucial code is in one place therefore
+reducing the spread but also bloating one class in this case. I suggest to
+use a inheritance or derivation based approach for a cleaner outline.
+
+Protocols like HTTP require session handling, especially on the server side
+which needs special attention. Challenges like lease times of sessions are
+not subject to developer but rather are a topic system operators have to
+tweak and therefore should not have to be taken care of by developers. This
+problem statement is subject of subsequent work.
+
+Also many security issues of such a stack are not considered and not matter
+of this subject here. I believe that this topic requires a more in depth
+knowledge than required for a generalistic enabler for several transport
+means as I want to provide in this and future work.
+
+In a last point, this stack has not been designed for massive parallelism and
+concurrent computing like a machine mit GPGPUs would be able to do so. But by
+providing mechanism like mutexes, semaphores, locks and queues a lot can be
+done for multicore architectures that are current as in early 2014. But for
+the long term future with hundreds of processing units this stack turn out to
+be not ideal.
 
 Citation: \cite{IEEEexample:beebe_archive}
 
