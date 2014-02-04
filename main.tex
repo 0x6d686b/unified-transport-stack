@@ -49,6 +49,10 @@
 \providecommand{\lemmaname}{Lemma}
 \providecommand{\theoremname}{Theorem}
 
+\addtolength{\textheight}{-2cm}
+\addtolength{\topmargin}{1cm}
+\addtolength{\columnsep}{1cm}
+
 \begin{document}
 
 \title{Unified Transport Stack for Cloud Computing}
@@ -98,13 +102,13 @@ effort needed to just send a first datagram is significant and leads to
 bloated source code with several hundred lines of code just for the
 initialization matters.
 
-Furthermore most used implementations are heavily operating system dependant
+Furthermore most used implementations are heavily operating system dependent
 therefore creating an overhead in de facto re-writing or re-implementing large
 portions of the network code for other protocols and/or other major platforms.
 If you simply consider the POSIX network style as used in *nix systems like
 Linux, *BSD, OSX and similar derivatives you are confronted with different
 level of POSIX ranging from 4.xBSD to POSIX.1-2008 with operating system
-flavoured variants or even compiler and standard library flavoured extension
+flavored variants or even compiler and standard library flavored extension
 which literally render the code an obscure conglomerate.
 
 When a developer writes a distributed application he will choose a stack and
@@ -312,8 +316,8 @@ simple way for chaining stacks or parser for I/O, along with providing access
 to the several layer of communication.
 
 Since the rise of multi-core architectures in
-2004\cite{amd:first-multicore-x86} the need for concurrency pattern is
-undoubtly widely necessary. In this terms providing support for concurrency
+2004\cite{amd:first-multicore-x86} the need for concurrency pattern is without
+doubt widely necessary. In this terms providing support for concurrency
 patterns like mutex, locking and semaphores surely is a big help to an
 engineer. Plus adding templates for patterns like reactors, proxy or singleton
 will provide a big help for repetitively used code.
@@ -367,7 +371,7 @@ endpoint has to satisfy certain parameters (for instance every requiring an up
 and running VPN connection before any data is sent by the application) and the
 stack takes care of the rest the risk of wrong security is reduced.
 
-For societies living in a deeply dependant way of communication resilience to
+For societies living in a deeply dependent way of communication resilience to
 interruption is crucial. Consequently the stack should support ad-hoc mesh
 network self-configuration and a wide variety of peer-to-peer protocols like
 bittorrent. This may provide an uninterruptible service for first responder
