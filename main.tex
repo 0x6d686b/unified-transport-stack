@@ -285,7 +285,7 @@ The architecture provides not only a northbound API to the developer but also
 a southbound internal API for adding new blocks for extending the supported
 protocols. Common protocols like UDP, TCP or ICMP must be built-in since the
 vast majority of application generated traffic is handled by these (around 79\%
-TCP and 19\% UDP traffic was measured on September 17 - 18 2011 at an IX in
+TCP and 19\% UDP traffic was measured on September 17--18 2011 at an IX in
 Chicago run by Equinix\cite{caida:application-protocol-percentage}). Also it
 would be very helpful to provide several other protocols for a steganographic
 transport of data\cite{ijcsi:dns-steganography} to evade deep packet
@@ -367,9 +367,10 @@ Our Cloud) when statistically 1.3 devices are owned per
 household\cite{gartner:predicts-2014-cognizant-computing}. The idea of JOC is
 to define a domain with given restrictions and requirements which the device
 has to adhere. Now if the developer can just state that the traffic to the
-endpoint has to satisfy certain parameters (for instance every requiring an up
-and running VPN connection before any data is sent by the application) and the
-stack takes care of the rest the risk of wrong security is reduced.
+endpoint has to satisfy certain parameters (for instance every connection
+requires an up and running VPN connection before any data is sent by the
+application) and the stack takes care of the rest the risk of wrong security
+is reduced.
 
 For societies living in a deeply dependent way of communication resilience to
 interruption is crucial. Consequently the stack should support ad-hoc mesh
@@ -451,7 +452,7 @@ projects like Linux showed.
 But this is also a potential source of problems when this stack starts to
 reimplement pieces of code already existent in the kernel or other
 core-libraries. Plus including everything possible in a stack is a mixed
-blessing, it is able to do everything but tends to be bloated with things
+blessing, the stack is able to do everything but tends to be bloated with things
 developer will rarely use. The challenge here is to find the right balance.
 
 In a further point this stack is a new way of adding developer added value in
@@ -462,7 +463,7 @@ therefore adapt the communication directly to his needs.
 
 On the downside this may implicate an immense risk since some extensions may
 not only require full access to the kernel-land and total control down to the
-NIC, but also may be used to directly attack the infrastructure in not
+NIC, but also may be used to directly attack the infrastructure in non
 foreseeable ways, especially with attempts to break out from the jailing.
 
 This stack enables applications and software to become QoS aware and
@@ -485,16 +486,16 @@ based network which could make use of mobile handsets already on site can
 prove itself as very advantageous when transportation means are a severe
 problem.
 
-GSM (3GPP) supports already handover from cell tower to another tower, A.
+GSM (3GPP) already supports handover from cell tower to another tower, A.
 Sarma, S. Joshi and S. Nandi explain very well an extension for IEEE 802.11 in
 their paper \cite{ijcn:ieee80211-handover} (described in figure
 \ref{fig:handover}) even though this is aimed at IEEE 802.11 and not at 3GPP.
 Originally, handover induced by the the base station is not intended by the
 standard therefore the stack would have to actually extend the PHY layer and
 possibly break compatibility with the existing hardware and devices. In IEEE
-802.21 handover is even described for vertical handovers (for example from
-IEEE 802.11 to 802.16 respectively Wifi to WiMAX) but has so far not reached
-any relevance.
+802.21 it is even described for vertical handovers (for example from IEEE
+802.11 to 802.16 respectively Wifi to WiMAX) but has so far not reached any
+relevance.
 
 \begin{figure}[h]
 \includegraphics[width=\columnwidth]{Handover-to-less-frequented-cell.eps}
@@ -510,7 +511,7 @@ connections).}
 
 A further very welcome improvement for engineers and developer is to be able
 to reuse paradigms, patterns and templates and reducing by this the overhead
-of rewriting them. But writing to general constructs for supporting the
+of rewriting them. But writing too general constructs for supporting the
 widest range possible of developer engineered code can turn these helper
 functions into a hard to understand and complex templating and can be
 considered harmful. Therefore a careful balance or different specific types
@@ -538,13 +539,20 @@ In a last point, this stack has not been designed for massive parallelism and
 concurrent computing like a machine mit GPGPUs would be able to do so. But by
 providing mechanism like mutexes, semaphores, locks and queues a lot can be
 done for multicore architectures that are current as in early 2014. But for
-the long term future with hundreds of processing units this stack turn out to
-be not ideal.
+the long term future with hundreds of processing units this stack may turn out
+to be not ideal.
+
+\section{Conclusion}
+
+I showed an outline of a new plugable stack which enables a developer to
+rapidly add their value and protocols for a future generation of cloud based
+and SDN-enabled applications. In a later section I critically discussed and established
+a base for my design decision.
 
 \section{Results}
 
 \textbf{Results will be a newly designed stack for communication in C++11 and
-C99.}
+C99 and matter for subsequent research and implementation.}
 
 \section*{Acknowledgment}
 
